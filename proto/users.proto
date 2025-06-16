@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package user;
+option go_package = "./pb;pb";
+
+service UserService {
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+    rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
+    rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+    rpc DeleteProfile(DeleteProfileRequest) returns (DeleteProfileResponse);
+}
+
+message User {
+    string id = 1;
+    string email = 2;
+    string name = 3;
+    string created_at = 4;
+    string updated_at = 5;
+}
+
+message ListUsersRequest {
+    int32 page = 1;
+    int32 limit = 2;
+    string name_filter = 3;
+    string email_filter = 4;
+}
+
+message ListUsersResponse {
+    repeated User users = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 limit = 4;
+}
+
+message GetProfileRequest {
+    string user_id = 1;
+}
+
+message GetProfileResponse {
+    User user = 1;
+}
+
+message UpdateProfileRequest {
+    string user_id = 1;
+    string name = 2;
+}
+
+message UpdateProfileResponse {
+    bool success = 1;
+    string message = 2;
+    User user = 3;
+}
+
+message DeleteProfileRequest {
+    string user_id = 1;
+}
+
+message DeleteProfileResponse {
+    bool success = 1;
+    string message = 2;
+}

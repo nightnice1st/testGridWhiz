@@ -1,0 +1,13 @@
+# ไฟล์ binary และ output
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+
+# โฟลเดอร์ build และ vendor
+/bin/
+/vendor/
+
+# Coverage reports
+coverage.out

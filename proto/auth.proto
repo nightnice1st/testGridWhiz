@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package auth;
+option go_package = "./pb;pb";
+
+service AuthService {
+    rpc Register(RegisterRequest) returns (RegisterResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
+}
+
+message RegisterRequest {
+    string email = 1;
+    string password = 2;
+    string name = 3;
+}
+
+message RegisterResponse {
+    bool success = 1;
+    string message = 2;
+    string user_id = 3;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    bool success = 1;
+    string message = 2;
+    string token = 3;
+}
+
+message LogoutRequest {
+    string token = 1;
+}
+
+message LogoutResponse {
+    bool success = 1;
+    string message = 2;
+}
